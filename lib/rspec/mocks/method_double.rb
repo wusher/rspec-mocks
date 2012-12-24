@@ -35,8 +35,10 @@ module RSpec
           'private'
         elsif object_singleton_class.protected_method_defined?(@method_name)
           'protected'
-        else
+        elsif object_singleton_class.public_method_defined?(@method_name)
           'public'
+        else 
+          raise "Attempt to stub unknown method '#{@method_name}'"
         end
       end
 
